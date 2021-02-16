@@ -4,7 +4,7 @@ version: '3'
 
 services:
   gvm-postgres:
-    image: "dgiorgio/postgres-gvm:11"
+    image: "reineltdev/postgres-gvm:11"
     hostname: "postgres-gvm"
     restart: always
     ports:
@@ -17,7 +17,7 @@ services:
       - POSTGRES_PASSWORD=gvm
 
   gvm-openvas:
-    image: "dgiorgio/openvas:20.8.0-1"
+    image: "reineltdev/openvas:20.8.0-1"
     hostname: "openvas"
     restart: always
     ports:
@@ -29,13 +29,13 @@ services:
       - "gvm-data:/usr/local/var/lib/gvm"
       - "/etc/localtime:/etc/localtime:ro"
     # environment:
-    #   - COMMUNITY_NVT_RSYNC_FEED=rsync://gvm_feed_server.service.com:/nvt-feed # Custom feed server https://github.com/dgiorgio/gvm-feed-server
-    #   - COMMUNITY_SCAP_RSYNC_FEED=rsync://gvm_feed_server.service.com:/scap-data # Custom feed server https://github.com/dgiorgio/gvm-feed-server
-    #   - COMMUNITY_GVMD_DATA_RSYNC_FEED=rsync://gvm_feed_server.service.com:/data-objects/gvmd/ # Custom feed server https://github.com/dgiorgio/gvm-feed-server
-    #   - COMMUNITY_CERT_RSYNC_FEED=rsync://gvm_feed_server.service.com:/cert-data # Custom feed server https://github.com/dgiorgio/gvm-feed-server
+    #   - COMMUNITY_NVT_RSYNC_FEED=rsync://gvm_feed_server.service.com:/nvt-feed # Custom feed server https://github.com/reineltdev/gvm-feed-server
+    #   - COMMUNITY_SCAP_RSYNC_FEED=rsync://gvm_feed_server.service.com:/scap-data # Custom feed server https://github.com/reineltdev/gvm-feed-server
+    #   - COMMUNITY_GVMD_DATA_RSYNC_FEED=rsync://gvm_feed_server.service.com:/data-objects/gvmd/ # Custom feed server https://github.com/reineltdev/gvm-feed-server
+    #   - COMMUNITY_CERT_RSYNC_FEED=rsync://gvm_feed_server.service.com:/cert-data # Custom feed server https://github.com/reineltdev/gvm-feed-server
 
   gvm-gvmd:
-    image: "dgiorgio/gvmd:20.8.0-1"
+    image: "reineltdev/gvmd:20.8.0-1"
     hostname: "gvmd"
     restart: always
     ports:
@@ -54,13 +54,13 @@ services:
       - gvm-openvas
       - gvm-postgres
     # environment:
-    #   - COMMUNITY_NVT_RSYNC_FEED=rsync://gvm_feed_server.service.com:/nvt-feed # Custom feed server https://github.com/dgiorgio/gvm-feed-server
-    #   - COMMUNITY_SCAP_RSYNC_FEED=rsync://gvm_feed_server.service.com:/scap-data # Custom feed server https://github.com/dgiorgio/gvm-feed-server
-    #   - COMMUNITY_GVMD_DATA_RSYNC_FEED=rsync://gvm_feed_server.service.com:/data-objects/gvmd/ # Custom feed server https://github.com/dgiorgio/gvm-feed-server
-    #   - COMMUNITY_CERT_RSYNC_FEED=rsync://gvm_feed_server.service.com:/cert-data # Custom feed server https://github.com/dgiorgio/gvm-feed-server
+    #   - COMMUNITY_NVT_RSYNC_FEED=rsync://gvm_feed_server.service.com:/nvt-feed # Custom feed server https://github.com/reineltdev/gvm-feed-server
+    #   - COMMUNITY_SCAP_RSYNC_FEED=rsync://gvm_feed_server.service.com:/scap-data # Custom feed server https://github.com/reineltdev/gvm-feed-server
+    #   - COMMUNITY_GVMD_DATA_RSYNC_FEED=rsync://gvm_feed_server.service.com:/data-objects/gvmd/ # Custom feed server https://github.com/reineltdev/gvm-feed-server
+    #   - COMMUNITY_CERT_RSYNC_FEED=rsync://gvm_feed_server.service.com:/cert-data # Custom feed server https://github.com/reineltdev/gvm-feed-server
 
   gvm-gsa:
-    image: "dgiorgio/gsa:20.8.0"
+    image: "reineltdev/gsa:20.8.0"
     hostname: "gsa"
     restart: always
     ports:

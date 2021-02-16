@@ -3,7 +3,10 @@
 STAGE="${1}"
 [[ "${STAGE}" == "" ]] && STAGE="stable"
 
+source $HOME/.cargo/env
+
 source "./${STAGE}"
+
 
 _build(){
   python3 setup.py install

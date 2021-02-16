@@ -1,11 +1,15 @@
-FROM dgiorgio/gvmlibs:20.8.0
+FROM reineltdev/gvmlibs
 
 # yarn nodejs
 RUN apt update -y && apt install -y curl apt-transport-https \
-  && curl --silent --show-error https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
+  && wget https://dl.yarnpkg.com/debian/pubkey.gpg \
+  && apt-key add pubkey.gpg \
   && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list \
-  && curl --silent --show-error https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add - \
-  && echo "deb https://deb.nodesource.com/node_8.x stretch main" | tee /etc/apt/sources.list.d/nodesource.list \
+  && rm pubkey.gpg \
+  && wget https://deb.nodesource.com/gpgkey/nodesource.gpg.key \
+  && apt-key add nodesource.gpg.key \
+  && rm nodesource.gpg.key \
+  && echo "deb https://deb.nodesource.com/node_12.x stretch main" | tee /etc/apt/sources.list.d/nodesource.list \
   && apt update -y && apt install -y nodejs yarn \
   && apt install -y --no-install-recommends --fix-missing \
   git cmake gcc g++ make clang-format pkg-config curl libglib2.0-dev \

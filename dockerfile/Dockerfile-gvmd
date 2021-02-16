@@ -1,4 +1,6 @@
-FROM dgiorgio/gvmlibs:20.8.0
+FROM reineltdev/openvas:20.08
+
+USER root
 
 RUN apt update -y && apt install -y --no-install-recommends --fix-missing \
   wget gnupg2 \
@@ -33,7 +35,7 @@ COPY ./entrypoint/gvmd/docker-entrypoint.sh /usr/local/bin/
 RUN chmod 755 /usr/local/bin/docker-entrypoint.sh \
   && chown -R gvm. /usr/local/var
 
-COPY --from=dgiorgio/openvas:latest /usr/local/bin/greenbone-nvt-sync /usr/local/bin/
+COPY --from=reineltdev/openvas:20.08 /usr/local/bin/greenbone-nvt-sync /usr/local/bin/
 
 USER gvm
 ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
